@@ -43,6 +43,7 @@ function ProductCard({ productList }: { productList: {}[] }) {
 				setProducts(resp?.products);
 			});
 		else setProducts(productList);
+		setSortText({ id: 1, value: "Reset" });
 	};
 
 	const handleSort = () => {
