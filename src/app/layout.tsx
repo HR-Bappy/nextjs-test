@@ -1,6 +1,7 @@
 import "./globals.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import type { Metadata } from "next";
+import Navbar from "../component/navbar";
 export const metadata: Metadata = {
 	title: "Static meta data",
 	description: "Static page metadata",
@@ -24,12 +25,14 @@ export default function RootLayout({
 }) {
 	return (
 		<html lang="en">
-			<body>{children}
-			<script
-				src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-				integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-				crossOrigin="anonymous"
-			/>
+			<body>
+				<Navbar />
+				{children}
+				<script
+					src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+					integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+					crossOrigin="anonymous"
+				/>
 			</body>
 		</html>
 	);

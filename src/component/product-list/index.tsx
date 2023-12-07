@@ -24,18 +24,16 @@ async function getCategoryList() {
 	return res.json();
 }
 
-function ProductCard({ productList }: { productList: {}[] }) {
-	const [categories, setCategories] = useState();
+function ProductCard({
+	productList,
+	categoryList,
+}: {
+	productList: {}[];
+	categoryList: string[];
+}) {
+	const [categories, setCategories] = useState(categoryList);
 	const [products, setProducts] = useState(productList);
 	const [sortText, setSortText] = useState<any>({ id: 1, value: "Reset" });
-
-	useEffect(() => {
-		getCategoryList()
-			.then((resp: any) => {
-				setCategories(resp);
-			})
-			.catch((err: any) => console.log(err));
-	}, []);
 
 	const handleClick = (category: any) => {
 		if (category)
@@ -85,10 +83,17 @@ function ProductCard({ productList }: { productList: {}[] }) {
 
 	return (
 		<div>
-			<div className="filter-section d-flex align-items-center">
-				{categories && <Dropdown data={categories} handleClick={handleClick} />}
-				<div className="sort-by-price">
-					<button className="btn border ms-5" onClick={handleSort}>Price {sortText.value}</button>
+			<div className="d-flex justify-content-between align-items-center">
+				<h2>Product List</h2>
+				<div className="filter-section d-flex align-items-center">
+					{categories && (
+						<Dropdown data={categories} handleClick={handleClick} />
+					)}
+					<div className="sort-by-price">
+						<button className="btn border ms-5" onClick={handleSort}>
+							Price {sortText.value}
+						</button>
+					</div>
 				</div>
 			</div>
 			<div className="product-group d-flex flex-wrap">

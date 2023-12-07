@@ -40,20 +40,32 @@ const Dropdown = ({data,handleClick}:any) => {
 	}, [isOpen]);
 
   return (
-    <div className='dropdown' ref={ref}>
-      <div className='dropdown-header' onClick={toggleDropdown}>
-        {selectedItem ? items.find((item:any )=> item == selectedItem) : "Select your destination"}
-        <i className={`fa fa-chevron-right icon ${isOpen && "open"}`}></i>
-      </div>
-      <div className={`dropdown-body ${isOpen && 'open'}`}>
-        {items.map((item:any) => (
-          <div className="dropdown-item" onClick={(e:any) => handleItemClick(e?.target?.id)} id={item}>
-            <span className={`dropdown-item-dot ${item == selectedItem && 'selected'}`}>• </span>
-            {item}
-          </div>
-        ))}
-      </div>
-    </div>
-  )
+		<div className="dropdown" ref={ref}>
+			<div className="dropdown-header" onClick={toggleDropdown}>
+				{selectedItem
+					? items.find((item: any) => item == selectedItem)
+					: "Select category"}
+				<i className={`fa fa-chevron-right icon ${isOpen && "open"}`}></i>
+			</div>
+			<div className={`dropdown-body ${isOpen && "open"}`}>
+				{items.map((item: any) => (
+					<div
+						className="dropdown-item"
+						onClick={(e: any) => handleItemClick(e?.target?.id)}
+						id={item}
+					>
+						<span
+							className={`dropdown-item-dot ${
+								item == selectedItem && "selected"
+							}`}
+						>
+							•{" "}
+						</span>
+						{item}
+					</div>
+				))}
+			</div>
+		</div>
+	);
 }
 export default Dropdown
